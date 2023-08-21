@@ -1,7 +1,6 @@
 package args
 
 import (
-	"github.com/alexflint/go-arg"
 	multiproviderconfigs "github.com/peacecwz/multi-provider-configs/providers"
 )
 
@@ -10,7 +9,6 @@ type ArgsConfigProvider[T any] struct {
 }
 
 func (p ArgsConfigProvider[T]) Parse(config *T) error {
-	_ = arg.Parse(config)
 
 	return nil
 }

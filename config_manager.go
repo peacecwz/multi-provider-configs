@@ -15,9 +15,9 @@ type ConfigManager[T any] struct {
 func New[T any](value T) *ConfigManager[T] {
 	configProviders := NewQueue[providers.ConfigProvider[T]]()
 
-	configProviders.Enqueue(args.NewArgsConfigProvider[T](args.WithRequired(true)))
-	configProviders.Enqueue(env.NewEnvConfigProvider[T](env.WithRequired(true)))
 	configProviders.Enqueue(json.NewJsonConfigProvider[T](json.WithRequired(false), json.WithConfigFile("config.json")))
+	configProviders.Enqueue(env.NewEnvConfigProvider[T](env.WithRequired(true)))
+	configProviders.Enqueue(args.NewArgsConfigProvider[T](args.WithRequired(true)))
 
 	return &ConfigManager[T]{
 		providers: configProviders,
